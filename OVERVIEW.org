@@ -2,6 +2,89 @@
 #+AUTHOR: Alexis LANQUETIN, Polytech'Grenoble, Univ. Grenoble Alpes
 #+DATE: Septembre 2020
 
+* I. Kusinta
+
+Kusinta is /rogue-like/. This kind of video a game is
+#+BEGIN_SRC ascii
+characterized by a dungeon crawl through procedurally generated levels, turn-based gameplay, tile-based graphics, and permanent death of the player character.
+Taken from Wikipedia
+#+END_SRC
+
+In Kusinta, the player explore a dungeon, kill the monster within and climb to the next room.
+All the monsters drop gold, and one in each room drops the key to the next room. When the player loot the key, a door to the next room appears.
+At any time, he can go back to the village and buy stuff to increase his power.
+
+* II. The Village
+
+In the village, the player have a menu on the left, where he can
+*** Go in the Dungeon (Adventure)
+*** See his equipements (Inventory)
+*** Buy stuff (Weapon Shop)
+*** Buy potions (Magic Shop)
+
+** * Inventory
+
+Here, the player can see his equipements and sell his stuff.
+
+** * Weapon Shop
+
+Here, the player as an large choice of equipements, generated based on level of his equipement. The more the player is well stuffed, the greater (and the more expansive) the equipement are. If he buy an equipements he already owns, the equipped stuff is automatly sold and replaced by the new one.
+For some gold, he can redraw equipements, if he doesn't like the actual set.
+
+** * Magic Shop
+
+There is two differents potions. Both heals the player when he is in the dungeon but one is a small potion (cheaper) and the oter is a big one.
+
+** * Stats & Equipements
+
+The player has 4 stats:
+ - Strengh: damages deal to the monsters
+ - Resistance : demages reduce from monsters attacks
+ - Attack speed : In millisecond, the time between two attacks
+ - Life
+
+ Equipements improve these stats. There is 8 differents equipements and the player can wear only 1 type of each at the same time.
+
+ The stats modification of the equipement is randomly generated, based on the level of the equipement. It's price is calculated with the power of these modifications.
+
+* III. The Dungeon
+
+Each room is randomly generated. There is pattern to make the room viable but either the size and the decoration are differents each room.
+
+There is also 3 differents visual for the room, which make all the rooms "unique".
+
+The player slains monster with a long bow. He can jump or move left and right.
+
+** * Rooms
+
+Each room has a level. The player spawn in the level-1 room, and climb to the level-2 room, and so on.
+The higher the room level is, the stronger the monster are. But, only an high ranking room can deliver the boss key. In fact, it's most likely for the monsters to drop the boss key if the room is of an higher level.
+At any time, the player can go back to the village and spend his money, but he will restart the dungeon, and start a level-1 room.
+Only one monster can drop the key to the next room. When it's dead, the door appears, and a compass show the direction to this door throughout the room.
+
+** * Monsters
+
+There are 5 differents monsters:
+- the Jhin : flying and ranged opponent
+- the Medusa : not resistant but strong and fast on foot opponent
+- the Demon : resistant but weak and slow on foot opponent
+- the mini Dragon : immortal ranged on foot opponent
+- the Dragon (boss) : flying, ranged, strong opponent.
+
+Each dead monster drops gold. But the stronger the player is, the weaker the gain is. In fact, the player can't reaptly loot the first room (which is very simple when he gains power), because the income sharply drops with higher player equipements.
+
+* IV. The Underworld
+
+The Underworld is the second world of Kusinta. It's also called "The second chance world". When the player die, he'll face the gohst of all ennemies he killed and he must find all the fragment of its soul the resucitate.
+
+When he recover his soul, a portal appears to teleport him in the dungeon, just where he died.
+
+But in the underworld, gohsts will chase him and definitly kill him if the player doesn't be carefull.
+
+The player can and create a lure to disttracts gohsts. They will indeed attack the lure instead of the player.
+
+If the player dies in the Underworld, it's game over.
+
 
 * [[README.md][BACK]]
 
