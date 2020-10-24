@@ -1,27 +1,16 @@
-# PROJET LOGICIEL INFO3 à Polytech' Grenoble
+# 3rd year SOFTWARE PROJECT at Polytech' Grenoble
 
-Le projet consiste à réaliser *un moteur de jeux à base d'automates*.
+During the 3rd year in computer science at Polytech Grenoble, FRANCE, we had to develop a 2D video game using JAVA in one month. This project consisted in creating a game engine based on automata.
+With my project team, we developed Kusinta. This game is a "rogue-like platformer" where the player explore a randomly generated dungeon, looting money and increase its power, until fighting final boss.
 
-### TABLE DES MATIÈRES
+### TABLE OF CONTENTS
 
-- [Lancement du projet](LANCEMENT.md)
+- [Overview](OVERVIEW.org)
 
-- [Fonctionnement](FONCTIONNEMENT.md)
+- [Requirements & Constraints](REQUIREMENTS.org)
 
-- [Planning](PLANNING.md)
-
-- [Description du projet](PROJET.org)
-
-- [Exigences des enseignants](EXIGENCES.org)
-
-- [Rôle des automates](gal/)
-
-- [Conseils et F.A.Q](faq/)
-
-- [Les podcasts](podcast/)
-
-- Le code du parser `À NE PAS MODIFIER` = info3.game.automata/
+- [Credits] (CREDITS.md)
 
 ---
-    AUTHOR: Michaël PÉRIN, Polytech'Grenoble, Univ. Grenoble Alpes 
-    DATE: avril 2020
+    AUTHOR: Alexis LANQUETIN, Polytech'Grenoble, Univ. Grenoble Alpes
+    LAST UPDATE: October 2020

@@ -1,0 +1,172 @@
+#+TITLE: # 3rd year SOFTWARE PROJECT at Polytech' Grenoble
+#+AUTHOR: Alexis LANQUETIN, Polytech'Grenoble, Univ. Grenoble Alpes
+#+DATE: Septembre 2020
+
+#+BEGIN_QUOTE
+ In this section, you will find out a description of the requirements and constraints concerning the project. To see how we faced them, see [[OVERVIEW.org][OVERVIEW]]
+* I. Game play
+* II. Learning objectives
+* III. Set up of a MVC solution (Model/View/Controller)
+* IV. GAL parser & automata
+* V. Graphic animation format /.ani/
+* VI. Menu
+#+END_QUOTE
+
+* I. Game play
+
+The game type was imposed and we faced common video game programmation issues.
+
+** *2D Video Game*
+
+The video game has to be a plateformer with top view map.
+
+** *Viewport*
+
+- The world in wich the player interacts is larger than the viewport.
+- The viewport is centered and focuses on the entity played, (keyboard controlled)
+
+** *Endless map*
+
+There was two options possible :
+  - The world is randomly generated as the player moves forward
+  - The world is a torus. When the player reach an edge, he teleport on the other edge
+
+** *2 distincts world with differents associated actions*
+
+This was the main constraints of the project. The game must contain two differents world with differents behavior. For exemple, we might take a land and an aquatic environnement. The action /MOVE/ in the first one will make the entity step forward while in the second environnement, it will make it swim forward.
+The gravity or the directionnal plane have to be differents.
+
+Therefore, the player can change and move on these two world using, for example, ladders to go underground or back up above ground.
+
+* II. Learning objectives
+
+- Use of an event graphic framework with problems of updating and reactivity
+
+- Model/View/Controller architecture design with clear separation between the three concepts
+
+- Use automata to animate game elements
+
+- Use of GAL parser provided by teachers
+
+- Definition of an animation standard: the sprites sheet + animation sequence
+
+- Think about a class structure where actions are not defined directly in the entity.
+
+* III. Set up of a MVC solution (Model/View/Controller)
+
+** The Controller
+- reçoit les évenements clavier et souris,
+- déclenche la mise à jour du Model et de la View
+
+** The Model
+- met à jour les entités en demandant à chacune d'effectuer un pas de leur automate
+- effectue les actions déclenchées par les automates (mise à jour des positions,...)
+
+** The View
+- effectue l'affichage graphique des actions via les avatars associées aux entités.
+
+#+BEGIN_QUOTE
+- The player interacts with th Controller
+- All entities belongs to the Model
+- The avatar are entities graphic version and belongs to the View
+#+END_QUOTE
+
+* IV. GAL parser & automata
+
+** *Entity behavior was defined by automata, writen in *GAL* (/Game Automata Language/)
+
+** *Each entities behavior is controlled by an automata*
+The game muyst contains at least
+  - One playable entity keyboard controlled via un automata "keyboard-controll"
+  - Opponents which behavior is definied by automata
+  - Map elements where behavior is an automata "do nothing"
+
+** *Automata example, from Kusinta*
+
+#+BEGIN_QUOTE
+Demon (East) {
+*(East)
+  | ! GotPower() ? Explode() : ()
+  | Cell(E, O) ? Turn(W) : (West)
+  | Cell(H, P) ? Power : (ME)
+  | Cell(E, P) ? Wizz() : (East)
+  | Closest(P, E) ? Pop(E) : (East)
+  | True ? Move(E) : (East)
+*(West)
+  | ! GotPower() ? Explode() : ()
+  | Cell(W, O) ? Turn(E) : (East)
+  | Cell(H, P) ? Power : (MW)
+  | Cell(W, P) ? Wizz() : (West)
+  | Closest(P, W) ? Pop(W) : (West)
+  | True ? Move(W) : (West)
+*(ME)
+  | Cell(E, P) ? Wizz() : (East)
+ | Cell(E, O) ? Turn(W) : (West)
+ | True ? Move(E) : (East)
+  *(MW)
+  | Cell(W, P) ? Wizz() : (West)
+ | Cell(W, O) ? Turn(E) : (ES)
+ | True ? Move(W) : (West)
+
+ }
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+Player_Donjon(Init){
+  * (Init)
+  | !GotPower() ? Explode () : (Init)
+  | Key(SPACE) ? Egg() : (Doing)
+  | Key(z) ? Jump: (Doing)
+  | Key(q) & !Cell(W, O) ? Move(W) : (Init)
+  | Key(d) & !Cell(E, O)? Move(E) : (Init)
+  | Key(x) ? Get() : (Init)
+  | Key(c) ? Store() : (Init)
+  | Key(s) ? Wizz()  : (Init)
+  | Key(v) ? Pop() : (Init)
+  | Key(a) ? Pick() : (Init)
+
+  * (Doing)
+  | ! GotPower() ? Explode () : (Init)
+  | Key(q) & !Cell(W, O) ? Move(W) : (Init)
+  | Key(d) & !Cell(E, O)? Move(E) : (Init)
+  | Key(s) ? Wizz()  : (Init)
+  | Key(x) ? Get() : (Init)
+  | Key(c) ? Store() : (Init)
+  | Key(v) ? Pop() : (Init)
+  | Key(a) ? Pick() : (Init)
+  | Key(z) ? Jump: (Doing)
+  | Key(SPACE) ? Egg() : (Doing)
+
+}
+#+END_QUOTE
+
+* V. Graphic animation format /.ani/
+
+The game must use sprite sheet /.png/ and an animation file /.ani/.
+The sprit sheet contains all the illustrations of an entity
+The animation file contains the image sequence to make the entity visualy perfom an action.
+
+*** Example of an animation file, from Kusinta
+
+#+BEGIN_SRC ascii
+sprite_sheet = resources/Player/spritePlayer.png
+18;7
+MOVE = 8;9;10;11;12;13
+JUMP = 15;16;17;22;23
+FALLING = 23
+SHOT = 114;115;116;117
+DEATH = 66;67;68
+SHOTMOVE = 120;121;122;123
+DEFAULT = 0;1;2;3
+#+END_SRC
+
+* VI. Menu
+
+The game must provides a menu to attribute an animation and sprites sheet to each entity. Therefore, we can easly change all entities behavior and visual.
+
+
+* [[README.md][BACK]]
+
+---
+    AUTHOR: Alexis LANQUETIN, Polytech'Grenoble, Univ. Grenoble Alpes
+    DATE: October 2020
