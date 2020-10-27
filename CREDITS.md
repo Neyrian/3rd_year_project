@@ -12,4 +12,7 @@ STEPHANE Tioyé
 
 KÜRKLÜ Fikret
 
+
+All image rights belong to their respective owners. 
+
 # [BACK](README.md)
